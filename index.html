@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub Estudiantil UCN</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orb bg-orb--1"></div>
+  <div class="bg-orb bg-orb--2"></div>
+  <div class="bg-grid"></div>
+
+  <section class="auth-screen" id="authScreen">
+    <div class="auth-shell">
+      <div class="auth-brand">
+        <div class="auth-brand__content">
+        <div class="brand-badge" aria-label="Logo UCN">
+          <img class="brand-badge__image" src="Escudo-UCN-Logos.png" alt="Logo de la Universidad Catolica del Norte">
+        </div>
+        <div class="auth-brand__copy">
+          <span class="eyebrow">Plataforma institucional</span>
+          <h1>Hub Estudiantil</h1>
+          <p>
+            Plataforma para centralizar avisos, actividades, hilos, peticiones y gestión documental
+            entre CEALES, estudiantes y jefaturas.
+          </p>
+        </div>
+        </div>
+      </div>
+
+
+      <div class="auth-card auth-card--form">
+        <div class="auth-card__header">
+          <h2>Ingreso institucional</h2>
+          <p>Acceso seguro para la comunidad universitaria</p>
+        </div>
+
+        <button type="button" class="google-btn" id="googleMockBtn">
+          <span class="google-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path fill="#EA4335" d="M12 10.2v3.9h5.5c-.2 1.3-1.6 3.9-5.5 3.9-3.3 0-6-2.7-6-6s2.7-6 6-6c1.9 0 3.1.8 3.9 1.5l2.7-2.6C17 3.5 14.8 2.5 12 2.5A9.5 9.5 0 0 0 2.5 12 9.5 9.5 0 0 0 12 21.5c5.5 0 9.1-3.9 9.1-9.3 0-.6-.1-1.1-.2-1.6H12Z"/>
+            </svg>
+          </span>
+          <span>Continuar con Google UCN</span>
+          <small>Acceso institucional</small>
+        </button>
+
+        <div class="divider"><span>o ingresar con correo UCN</span></div>
+
+        <form class="auth-form" onsubmit="return false;">
+          <label for="email">Correo</label>
+          <input id="email" type="email" placeholder="nombre@ucn.cl" />
+
+          <label for="password">Contraseña</label>
+          <input id="password" type="password" placeholder="••••••••••" />
+
+          <p class="auth-form__hint">
+            El perfil se asigna automaticamente segun el correo institucional autorizado por administracion.
+          </p>
+
+          <label for="cealSelect">CEAL de ingreso</label>
+          <select id="cealSelect">
+            <option value="Informatica" selected>CEAL Informatica</option>
+            <option value="Industrial">CEAL Industrial</option>
+            <option value="Minas">CEAL Minas</option>
+            <option value="Mecanica">CEAL Mecanica</option>
+            <option value="Electrica">CEAL Electrica</option>
+          </select>
+
+          <button type="button" class="btn btn--primary btn--block" id="enterBtn">
+            Ingresar a la plataforma
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell is-hidden" id="appShell">
+    <aside class="sidebar">
+      <div class="sidebar__top">
+        <div class="sidebar__brand">
+          <div class="sidebar__logo" aria-label="Logo UCN">
+            <img class="sidebar__logo-image" src="Escudo-UCN-Logos.png" alt="Logo de la Universidad Catolica del Norte">
+          </div>
+          <div>
+            <strong>Hub Estudiantil</strong>
+            <small>Escuela de Ingeniería</small>
+          </div>
+        </div>
+
+        <div class="sidebar__roles">
+          <button class="sidebar-role is-active" data-role-switch="ceal">CEAL</button>
+          <button class="sidebar-role" data-role-switch="student">Estudiante</button>
+          <button class="sidebar-role" data-role-switch="jefe">Jefatura</button>
+          <button class="sidebar-role" data-role-switch="admin">Admin</button>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav" id="desktopNav"></nav>
+
+      <div class="sidebar__footer">
+        <div class="user-card">
+          <div class="user-card__avatar" id="userAvatar">CE</div>
+          <div>
+            <strong id="userName">Representante CEAL</strong>
+            <small id="userMeta">Acceso autenticado</small>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn--ghost btn--block" id="logoutBtn">
+          Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar__left">
+          <span class="eyebrow eyebrow--blue" id="sectionEyebrow">Panel principal</span>
+          <h2 id="sectionTitle">Inicio</h2>
+          <p id="sectionSubtitle">Vista general del flujo y accesos del rol actual.</p>
+        </div>
+
+      </header>
+
+      <section class="content">
+        <section class="panel is-active" data-panel="inicio">
+          <div class="hero-panel">
+
+            <div class="hero-panel__visual">
+              <div class="hero-highlight">
+                <div class="hero-highlight__top">
+                  <div class="hero-highlight__heading">
+                    <span class="hero-highlight__eyebrow" id="heroHighlightEyebrow">Mensaje destacado</span>
+                    <strong id="heroHighlightTitle">Mensaje visible para CEAL Informatica</strong>
+                  </div>
+                </div>
+                <p id="heroHighlightText">Este espacio puede usarse para publicar un mensaje personalizado del CEAL con informacion relevante para estudiantes y jefatura.</p>
+                <small class="hero-highlight__meta" id="heroHighlightMeta">Publicado por CEAL Informatica</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid" data-roles="student,ceal,jefe">
+            <article class="glass-card">
+              <div class="card-head">
+                <h4>Accesos por rol</h4>
+                <span class="soft-badge">Control por perfil</span>
+              </div>
+              <div class="access-grid">
+                <div class="access-item">
+                  <strong>Estudiante</strong>
+                  <p>Consulta avisos, crea hilos, responde y registra peticiones.</p>
+                </div>
+                <div class="access-item">
+                  <strong>CEAL</strong>
+                  <p>Publica avisos y actividades, gestiona peticiones y administra repositorios CEAL.</p>
+                </div>
+                <div class="access-item">
+                  <strong>Jefatura</strong>
+                  <p>Consulta avisos, participa en hilos y administra el repositorio compartido con CEAL.</p>
+                </div>
+                <div class="access-item">
+                  <strong>Administrador</strong>
+                  <p>Habilita o restringe accesos y administra configuraciones esenciales de la plataforma.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <div class="card-head">
+                <h4>Actividad reciente</h4>
+                <a href="#">Ver más</a>
+              </div>
+
+              <div class="timeline">
+                <div class="timeline__item">
+                  <span></span>
+                  <div>
+                    <strong>Nuevo aviso publicado</strong>
+                    <small>CEAL Informática · hace 25 min</small>
+                  </div>
+                </div>
+                <div class="timeline__item">
+                  <span></span>
+                  <div>
+                    <strong>Petición actualizada a “En revisión”</strong>
+                    <small>Flujo CEAL · hace 40 min</small>
+                  </div>
+                </div>
+                <div class="timeline__item">
+                  <span></span>
+                  <div>
+                    <strong>Documento cargado al repo compartido</strong>
+                    <small>Jefatura · hoy 09:15</small>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="admin-dashboard" data-roles="admin">
+            <article class="glass-card admin-overview">
+              <div class="card-head">
+                <div>
+                  <h4>KPIs globales</h4>
+                  <p>Vista consolidada de accesos, actividad y publicaciones de todos los CEALes.</p>
+                </div>
+                <div class="admin-filter" id="adminCealFilter">
+                  <button type="button" class="chip is-active" data-admin-filter="all">Todos</button>
+                  <button type="button" class="chip" data-admin-filter="Informatica">Informatica</button>
+                  <button type="button" class="chip" data-admin-filter="Industrial">Industrial</button>
+                  <button type="button" class="chip" data-admin-filter="Minas">Minas</button>
+                  <button type="button" class="chip" data-admin-filter="Mecanica">Mecanica</button>
+                </div>
+              </div>
+
+              <div class="admin-kpis">
+                <article class="admin-kpi">
+                  <span>Ingresos al portal</span>
+                  <strong id="adminKpiLogins">1.284</strong>
+                  <small id="adminKpiLoginsMeta">Todos los CEALes</small>
+                </article>
+                <article class="admin-kpi">
+                  <span>Actividades activas</span>
+                  <strong id="adminKpiActivities">18</strong>
+                  <small id="adminKpiActivitiesMeta">Publicadas este mes</small>
+                </article>
+                <article class="admin-kpi">
+                  <span>CEALes con actividad</span>
+                  <strong id="adminKpiCeals">5</strong>
+                  <small id="adminKpiCealsMeta">Con publicaciones recientes</small>
+                </article>
+                <article class="admin-kpi">
+                  <span>Mensajes destacados</span>
+                  <strong id="adminKpiHighlights">9</strong>
+                  <small id="adminKpiHighlightsMeta">Visibles en portada</small>
+                </article>
+              </div>
+            </article>
+
+            <div class="dashboard-grid dashboard-grid--admin">
+              <article class="glass-card">
+                <div class="card-head">
+                  <div>
+                    <h4>Ingresos por CEAL</h4>
+                    <p>Comparativa de accesos institucionales segun el filtro seleccionado.</p>
+                  </div>
+                  <span class="soft-badge" id="adminChartBadge">Vista general</span>
+                </div>
+
+                <div class="admin-chart" id="adminChart">
+                  <div class="admin-chart__row">
+                    <span>Informatica</span>
+                    <div class="admin-chart__track"><i id="barInformatica" style="width: 88%"></i></div>
+                    <strong id="valueInformatica">342</strong>
+                  </div>
+                  <div class="admin-chart__row">
+                    <span>Industrial</span>
+                    <div class="admin-chart__track"><i id="barIndustrial" style="width: 74%"></i></div>
+                    <strong id="valueIndustrial">286</strong>
+                  </div>
+                  <div class="admin-chart__row">
+                    <span>Minas</span>
+                    <div class="admin-chart__track"><i id="barMinas" style="width: 63%"></i></div>
+                    <strong id="valueMinas">241</strong>
+                  </div>
+                  <div class="admin-chart__row">
+                    <span>Mecanica</span>
+                    <div class="admin-chart__track"><i id="barMecanica" style="width: 58%"></i></div>
+                    <strong id="valueMecanica">224</strong>
+                  </div>
+                </div>
+              </article>
+
+              <article class="glass-card">
+                <div class="card-head">
+                  <div>
+                    <h4>Actividad de CEALes</h4>
+                    <p>Indicadores de publicaciones, hilos y peticiones por unidad.</p>
+                  </div>
+                  <span class="soft-badge" id="adminSummaryBadge">Todos los CEALes</span>
+                </div>
+
+                <div class="admin-summary" id="adminSummary">
+                  <article>
+                    <span>Avisos publicados</span>
+                    <strong id="adminSummaryPosts">34</strong>
+                  </article>
+                  <article>
+                    <span>Hilos activos</span>
+                    <strong id="adminSummaryThreads">21</strong>
+                  </article>
+                  <article>
+                    <span>Peticiones en curso</span>
+                    <strong id="adminSummaryRequests">17</strong>
+                  </article>
+                  <article>
+                    <span>Ultima actividad</span>
+                    <strong id="adminSummaryLast">Hace 12 min</strong>
+                  </article>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="avisos">
+          <div class="panel-head">
+            <div>
+              <h3>Avisos y actividades</h3>
+              <p>Feed principal para estudiantes, CEAL y jefaturas.</p>
+            </div>
+
+            <div class="panel-actions">
+              <button class="chip is-active">Todos</button>
+              <button class="chip">Avisos</button>
+              <button class="chip">Actividades</button>
+              <button class="chip">Noticias</button>
+            </div>
+          </div>
+
+          <div class="feed-grid">
+            <article class="feed-card">
+              <div class="feed-meta">
+                <span class="tag">Oficial</span>
+                <small>Hace 2 horas</small>
+              </div>
+              <h4>Convocatoria a reunión ampliada</h4>
+              <p>Instancia de coordinación con representantes estudiantiles y revisión de prioridades del semestre.</p>
+              <div class="feed-footer">
+                <small>Publicado por CEAL Ingeniería</small>
+                <a href="#">Ver detalle</a>
+              </div>
+            </article>
+
+            <article class="feed-card">
+              <div class="feed-meta">
+                <span class="tag tag--accent">Actividad</span>
+                <small>18 abril</small>
+              </div>
+              <h4>Feria de voluntariado estudiantil</h4>
+              <p>Espacio para difusión de agrupaciones, proyectos sociales y apoyo académico.</p>
+              <div class="feed-footer">
+                <small>Escuela de Ingeniería</small>
+                <a href="#">Inscribirse</a>
+              </div>
+            </article>
+
+            <article class="feed-card">
+              <div class="feed-meta">
+                <span class="tag tag--soft">Noticia</span>
+                <small>Ayer</small>
+              </div>
+              <h4>Actualización de salas para actividades</h4>
+              <p>Se ajustó la asignación de espacios para talleres, reuniones y actividades de apoyo.</p>
+              <div class="feed-footer">
+                <small>Jefatura</small>
+                <a href="#">Leer más</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="hilos">
+          <div class="panel-head">
+            <div>
+              <h3>Hilos estudiantiles</h3>
+              <p>Espacio de conversación y trazabilidad de respuestas.</p>
+            </div>
+
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button" data-roles="student">Nuevo hilo</button>
+            </div>
+          </div>
+
+          <div class="thread-layout">
+            <aside class="thread-list">
+              <article class="thread-item is-active">
+                <strong>Uso de salas comunes</strong>
+                <small>12 respuestas · actualizado hace 10 min</small>
+              </article>
+              <article class="thread-item">
+                <strong>Becas internas y difusión</strong>
+                <small>6 respuestas · ayer</small>
+              </article>
+              <article class="thread-item">
+                <strong>Horarios de laboratorios</strong>
+                <small>4 respuestas · hoy</small>
+              </article>
+            </aside>
+
+            <div class="thread-chat">
+              <div class="thread-chat__head">
+                <h4>Uso de salas comunes</h4>
+                <span class="soft-badge">Abierto</span>
+              </div>
+
+              <div class="message">
+                <div class="message__avatar">ES</div>
+                <div class="message__bubble">
+                  <strong>Estudiante</strong>
+                  <p>¿Se puede ampliar el horario de las salas para trabajo grupal durante semanas de evaluaciones?</p>
+                </div>
+              </div>
+
+              <div class="message">
+                <div class="message__avatar message__avatar--accent">CE</div>
+                <div class="message__bubble">
+                  <strong>Representante CEAL</strong>
+                  <p>Lo revisaremos con coordinación. Dejen aquí propuestas de bloque horario y uso esperado.</p>
+                </div>
+              </div>
+
+              <div class="reply-box" data-roles="ceal,student">
+                <textarea placeholder="Escribe tu respuesta..."></textarea>
+                <div class="reply-box__actions">
+                  <button class="btn btn--secondary" type="button">Adjuntar</button>
+                  <button class="btn btn--primary" type="button">Publicar respuesta</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="peticiones">
+          <div class="panel-head">
+            <div>
+              <h3>Peticiones y seguimiento</h3>
+              <p>Conversaciones privadas entre estudiante y CEAL. Jefatura solo revisa peticiones elevadas por CEAL.</p>
+            </div>
+
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button" data-roles="student">Nueva petición</button>
+              <button class="btn btn--secondary" type="button" data-roles="ceal,jefe">Filtrar casos</button>
+            </div>
+          </div>
+
+          <div class="panel-actions panel-actions--filters" data-roles="ceal,jefe">
+            <button class="chip is-active">Todas</button>
+            <button class="chip">Ingresadas</button>
+            <button class="chip">En revisión</button>
+            <button class="chip">Elevadas a JC</button>
+            <button class="chip">Cerradas</button>
+            <button class="chip">Hoy</button>
+            <button class="chip">Esta semana</button>
+            <button class="chip">Este mes</button>
+          </div>
+
+          <div class="thread-layout petition-layout">
+            <aside class="thread-list petition-list">
+              <article class="thread-item is-active">
+                <strong>#1042 Reserva de sala de tutorías</strong>
+                <small>Camila Rojas · En revisión · 14/04/2026</small>
+              </article>
+              <article class="thread-item">
+                <strong>#1038 Difusión de práctica profesional</strong>
+                <small>Matías Herrera · Elevada a JC · 12/04/2026</small>
+              </article>
+              <article class="thread-item">
+                <strong>#1034 Solicitud de apoyo para actividad</strong>
+                <small>Valentina Muñoz · Ingresada · 11/04/2026</small>
+              </article>
+            </aside>
+
+            <div class="thread-chat petition-chat">
+              <div class="thread-chat__head">
+                <div>
+                  <h4>#1042 Reserva de sala de tutorías</h4>
+                  <small class="petition-meta">Camila Rojas · En revisión · Visible solo para estudiante y CEAL</small>
+                </div>
+                <div class="panel-actions">
+                  <span class="soft-badge">En revisión</span>
+                  <button class="btn btn--secondary" type="button" data-roles="ceal">Elevar a JC</button>
+                </div>
+              </div>
+
+              <div class="message">
+                <div class="message__avatar">CR</div>
+                <div class="message__bubble">
+                  <strong>Camila Rojas</strong>
+                  <p>Necesitamos una sala disponible para tutorías grupales durante la semana de evaluaciones. Idealmente en bloque de tarde.</p>
+                </div>
+              </div>
+
+              <div class="message">
+                <div class="message__avatar message__avatar--accent">CE</div>
+                <div class="message__bubble">
+                  <strong>Representante CEAL</strong>
+                  <p>Estamos revisando disponibilidad con coordinación. Esta conversación es privada entre quien envió la petición y el CEAL, salvo que el caso se eleve a Jefatura.</p>
+                </div>
+              </div>
+
+              <div class="message" data-roles="jefe">
+                <div class="message__avatar message__avatar--soft">JC</div>
+                <div class="message__bubble">
+                  <strong>Jefe de Carrera</strong>
+                  <p>Las peticiones elevadas por CEAL aparecen aquí para seguimiento conjunto y respuesta formal al estudiante.</p>
+                </div>
+              </div>
+
+              <div class="reply-box" data-roles="ceal,jefe,student">
+                <textarea placeholder="Escribe una actualización o respuesta del caso..."></textarea>
+                <div class="reply-box__actions">
+                  <button class="btn btn--secondary" type="button">Adjuntar antecedente</button>
+                  <button class="btn btn--primary" type="button">Responder a la petición</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="repo-shared">
+          <div class="panel-head">
+            <div>
+              <h3>Repositorio compartido CEAL / Jefatura</h3>
+              <p>Espacio documental común entre representantes CEAL y jefes de carrera.</p>
+            </div>
+
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button" data-roles="ceal,jefe">Subir documento</button>
+            </div>
+          </div>
+
+          <div class="repo-grid">
+            <article class="file-card">
+              <div class="file-card__icon">PDF</div>
+              <div>
+                <strong>Lineamientos_2026.pdf</strong>
+                <small>2.1 MB · Compartido por Jefatura</small>
+              </div>
+              <a href="#">Descargar</a>
+            </article>
+
+            <article class="file-card">
+              <div class="file-card__icon">DOC</div>
+              <div>
+                <strong>Acta_Reunion_CEALES.docx</strong>
+                <small>Última actualización hoy</small>
+              </div>
+              <a href="#">Ver</a>
+            </article>
+
+            <article class="file-card">
+              <div class="file-card__icon">XLS</div>
+              <div>
+                <strong>Seguimiento_Actividades.xlsx</strong>
+                <small>Uso colaborativo</small>
+              </div>
+              <a href="#">Descargar</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="repo-ceal">
+          <div class="panel-head">
+            <div>
+              <h3>Repositorio privado CEAL</h3>
+              <p>Documentos exclusivos para gestión interna del centro de alumnos.</p>
+            </div>
+
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button" data-roles="ceal">Cargar documento</button>
+            </div>
+          </div>
+
+          <div class="repo-grid">
+            <article class="file-card file-card--private">
+              <div class="file-card__icon">DOC</div>
+              <div>
+                <strong>Plan_Interno_CEAL.docx</strong>
+                <small>Acceso restringido</small>
+              </div>
+              <a href="#">Ver</a>
+            </article>
+
+            <article class="file-card file-card--private">
+              <div class="file-card__icon">PDF</div>
+              <div>
+                <strong>Presupuesto_Evento.pdf</strong>
+                <small>Solo CEAL</small>
+              </div>
+              <a href="#">Descargar</a>
+            </article>
+
+            <article class="file-card file-card--private">
+              <div class="file-card__icon">ZIP</div>
+              <div>
+                <strong>Material_Campaña.zip</strong>
+                <small>Privado · 14 MB</small>
+              </div>
+              <a href="#">Gestionar</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="publicar">
+          <div class="panel-head">
+            <div>
+              <h3>Publicación de contenido</h3>
+              <p>Flujo de creación de avisos, actividades y contenido informativo CEAL.</p>
+            </div>
+
+            <div class="panel-actions">
+              <button class="chip is-active">Aviso</button>
+              <button class="chip">Actividad</button>
+              <button class="chip">Noticia</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <article class="glass-card">
+              <h4>Nuevo aviso</h4>
+              <div class="field-grid">
+                <label>Título
+                  <input type="text" placeholder="Ej. Cambio de sala para reunión" />
+                </label>
+                <label>Categoría
+                  <select>
+                    <option>Oficial</option>
+                    <option>Académico</option>
+                    <option>Estudiantil</option>
+                  </select>
+                </label>
+              </div>
+
+              <label>Contenido
+                <textarea placeholder="Redacta el comunicado oficial..."></textarea>
+              </label>
+
+              <div class="field-grid">
+                <label>CEAL asociado
+                  <select>
+                    <option>CEAL Informática</option>
+                    <option>CEAL Industrial</option>
+                    <option>CEAL Minas</option>
+                  </select>
+                </label>
+                <label>Visibilidad
+                  <select>
+                    <option>Todos los estudiantes</option>
+                    <option>Solo CEAL específico</option>
+                    <option>Interno</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn--secondary" type="button">Guardar borrador</button>
+                <button class="btn btn--primary" type="button">Publicar aviso</button>
+              </div>
+            </article>
+
+            <article class="glass-card">
+              <h4>Nueva actividad</h4>
+
+              <div class="field-grid">
+                <label>Título
+                  <input type="text" placeholder="Ej. Taller de inducción" />
+                </label>
+                <label>Fecha
+                  <input type="text" placeholder="20/04/2026" />
+                </label>
+              </div>
+
+              <div class="field-grid">
+                <label>Lugar
+                  <input type="text" placeholder="Auditorio / Sala / Patio" />
+                </label>
+                <label>Cupo
+                  <input type="text" placeholder="Ej. 80 personas" />
+                </label>
+              </div>
+
+              <label>Descripción
+                <textarea placeholder="Detalle breve del evento..."></textarea>
+              </label>
+
+              <div class="form-actions">
+                <button class="btn btn--secondary" type="button">Cancelar</button>
+                <button class="btn btn--primary" type="button">Publicar actividad</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" data-panel="usuarios">
+          <div class="panel-head">
+            <div>
+              <h3>Gestión de usuarios</h3>
+              <p>Administración básica de accesos y perfiles autorizados.</p>
+            </div>
+
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button">Nuevo usuario</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Último acceso</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ceal.mecanica@ucn.cl</td>
+                  <td>Representante CEAL</td>
+                  <td><span class="status status--ok">Activo</span></td>
+                  <td>Hoy · 09:20</td>
+                  <td><a href="#">Editar</a></td>
+                </tr>
+                <tr>
+                  <td>jefatura.ingenieria@ucn.cl</td>
+                  <td>Jefe de Carrera</td>
+                  <td><span class="status status--ok">Activo</span></td>
+                  <td>Ayer · 18:10</td>
+                  <td><a href="#">Permisos</a></td>
+                </tr>
+                <tr>
+                  <td>admin.hub@ucn.cl</td>
+                  <td>Administrador</td>
+                  <td><span class="status status--info">Habilitado</span></td>
+                  <td>Hoy · 08:02</td>
+                  <td><a href="#">Gestionar</a></td>
+                </tr>
+                <tr>
+                  <td>usuario.temporal@ucn.cl</td>
+                  <td>Invitado</td>
+                  <td><span class="status status--warn">Pendiente</span></td>
+                  <td>Sin acceso</td>
+                  <td><a href="#">Activar</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <nav class="mobile-nav" id="mobileNav"></nav>
+  </div>
+
+  <script>
+    const roles = {
+      student: {
+        label: "Estudiante",
+        avatar: "ES",
+        eyebrow: "Portal estudiantil",
+        title: "Inicio",
+        subtitle: "Consulta avisos, crea hilos, responde y registra peticiones.",
+        hero: {
+          badge: "Estudiante",
+          title: "Experiencia de interacción estudiantil",
+          description: "El estudiante ve información vigente, participa en hilos y registra solicitudes con seguimiento básico."
+        },
+        highlight: {
+          eyebrow: "Mensaje del CEAL",
+          text: "Tu CEAL puede publicar aqui recordatorios, cambios academicos, actividades y avisos importantes para mantener informado al curso."
+        },
+        showStats: false,
+        tabs: ["inicio", "avisos", "hilos", "peticiones"]
+      },
+      ceal: {
+        label: "Representante CEAL",
+        avatar: "CE",
+        eyebrow: "Panel CEAL",
+        title: "Inicio",
+        subtitle: "Publicación, seguimiento y gestión documental interna y compartida.",
+        hero: {
+          badge: "Representante CEAL",
+          title: "Panel operativo del CEAL",
+          description: "El CEAL publica avisos y actividades, responde hilos, actualiza peticiones y administra repositorios."
+        },
+        highlight: {
+          eyebrow: "Mensaje destacado",
+          text: "Usa este recuadro para dejar un mensaje personalizado visible para estudiantes y jefatura, como reuniones, elecciones, actividades o avisos urgentes."
+        },
+        showStats: false,
+        tabs: ["inicio", "avisos", "hilos", "peticiones", "repo-shared", "repo-ceal", "publicar"]
+      },
+      jefe: {
+        label: "Jefe de Carrera",
+        avatar: "JC",
+        eyebrow: "Panel jefatura",
+        title: "Inicio",
+        subtitle: "Consulta contenido institucional, participa en hilos y revisa peticiones elevadas por CEAL.",
+        hero: {
+          badge: "Jefe de Carrera",
+          title: "Panel de coordinación académica",
+          description: "La jefatura visualiza avisos, participa en hilos y revisa peticiones elevadas por CEAL junto al repositorio compartido."
+        },
+        highlight: {
+          eyebrow: "Mensaje del CEAL",
+          text: "Este espacio muestra el mensaje vigente que el CEAL desea destacar para estudiantes y coordinacion academica."
+        },
+        showStats: false,
+        tabs: ["inicio", "avisos", "hilos", "peticiones", "repo-shared"]
+      },
+      admin: {
+        label: "Administrador",
+        avatar: "AD",
+        eyebrow: "Administración",
+        title: "Inicio",
+        subtitle: "Control de usuarios, perfiles y accesos autorizados.",
+        hero: {
+          badge: "Administrador",
+          title: "Control de acceso y configuración mínima",
+          description: "El administrador habilita o restringe usuarios autorizados y mantiene la operación general de la plataforma."
+        },
+        highlight: {
+          eyebrow: "Supervision",
+          text: "Desde aqui se puede revisar el mensaje destacado publicado por cada CEAL y su consistencia con la comunicacion institucional."
+        },
+        showStats: false,
+        tabs: ["inicio", "usuarios"]
+      }
+    };
+
+    const tabs = {
+      inicio: { label: "Inicio", icon: "⌂", subtitle: "Vista general del flujo y accesos del rol actual." },
+      avisos: { label: "Avisos", icon: "◉", subtitle: "Listado de avisos, noticias y actividades vigentes." },
+      hilos: { label: "Hilos", icon: "◎", subtitle: "Espacio de conversación y trazabilidad." },
+      peticiones: { label: "Peticiones", icon: "◌", subtitle: "Registro y seguimiento básico de solicitudes." },
+      "repo-shared": { label: "Repo compartido", icon: "▣", subtitle: "Documentos compartidos entre CEAL y Jefatura." },
+      "repo-ceal": { label: "Repo CEAL", icon: "▤", subtitle: "Documentación privada de uso exclusivo CEAL." },
+      publicar: { label: "Publicar", icon: "✦", subtitle: "Creación de avisos, noticias y actividades." },
+      usuarios: { label: "Usuarios", icon: "☰", subtitle: "Gestión de perfiles y accesos autorizados." }
+    };
+
+    let currentRole = "ceal";
+    let currentTab = "inicio";
+    let currentAdminFilter = "all";
+    const roleDirectory = {
+      admin: ["admin@ucn.cl", "direccion.escuela@ucn.cl"],
+      jefe: ["jefe.informatica@ucn.cl", "jefe.industrial@ucn.cl", "jefe.minas@ucn.cl", "jefe.mecanica@ucn.cl"],
+      ceal: ["ceal.informatica@ucn.cl", "ceal.industrial@ucn.cl", "ceal.minas@ucn.cl", "ceal.mecanica@ucn.cl"]
+    };
+    const adminMetrics = {
+      all: {
+        logins: "1.284",
+        loginsMeta: "Todos los CEALes",
+        activities: "18",
+        activitiesMeta: "Publicadas este mes",
+        ceals: "5",
+        cealsMeta: "Con publicaciones recientes",
+        highlights: "9",
+        highlightsMeta: "Visibles en portada",
+        badge: "Vista general",
+        summaryBadge: "Todos los CEALes",
+        posts: "34",
+        threads: "21",
+        requests: "17",
+        last: "Hace 12 min",
+        chart: { Informatica: 342, Industrial: 286, Minas: 241, Mecanica: 224 }
+      },
+      Informatica: {
+        logins: "342",
+        loginsMeta: "Accesos de CEAL Informatica",
+        activities: "6",
+        activitiesMeta: "Actividades activas",
+        ceals: "1",
+        cealsMeta: "CEAL filtrado",
+        highlights: "2",
+        highlightsMeta: "Mensajes visibles",
+        badge: "Filtro: Informatica",
+        summaryBadge: "CEAL Informatica",
+        posts: "11",
+        threads: "8",
+        requests: "5",
+        last: "Hace 8 min",
+        chart: { Informatica: 342, Industrial: 0, Minas: 0, Mecanica: 0 }
+      },
+      Industrial: {
+        logins: "286",
+        loginsMeta: "Accesos de CEAL Industrial",
+        activities: "4",
+        activitiesMeta: "Actividades activas",
+        ceals: "1",
+        cealsMeta: "CEAL filtrado",
+        highlights: "2",
+        highlightsMeta: "Mensajes visibles",
+        badge: "Filtro: Industrial",
+        summaryBadge: "CEAL Industrial",
+        posts: "8",
+        threads: "5",
+        requests: "4",
+        last: "Hace 22 min",
+        chart: { Informatica: 0, Industrial: 286, Minas: 0, Mecanica: 0 }
+      },
+      Minas: {
+        logins: "241",
+        loginsMeta: "Accesos de CEAL Minas",
+        activities: "5",
+        activitiesMeta: "Actividades activas",
+        ceals: "1",
+        cealsMeta: "CEAL filtrado",
+        highlights: "3",
+        highlightsMeta: "Mensajes visibles",
+        badge: "Filtro: Minas",
+        summaryBadge: "CEAL Minas",
+        posts: "9",
+        threads: "4",
+        requests: "3",
+        last: "Hace 35 min",
+        chart: { Informatica: 0, Industrial: 0, Minas: 241, Mecanica: 0 }
+      },
+      Mecanica: {
+        logins: "224",
+        loginsMeta: "Accesos de CEAL Mecanica",
+        activities: "3",
+        activitiesMeta: "Actividades activas",
+        ceals: "1",
+        cealsMeta: "CEAL filtrado",
+        highlights: "2",
+        highlightsMeta: "Mensajes visibles",
+        badge: "Filtro: Mecanica",
+        summaryBadge: "CEAL Mecanica",
+        posts: "6",
+        threads: "4",
+        requests: "5",
+        last: "Hace 18 min",
+        chart: { Informatica: 0, Industrial: 0, Minas: 0, Mecanica: 224 }
+      }
+    };
+
+    const authScreen = document.getElementById("authScreen");
+    const appShell = document.getElementById("appShell");
+    const desktopNav = document.getElementById("desktopNav");
+    const mobileNav = document.getElementById("mobileNav");
+    const userAvatar = document.getElementById("userAvatar");
+    const userName = document.getElementById("userName");
+    const userMeta = document.getElementById("userMeta");
+    const sectionEyebrow = document.getElementById("sectionEyebrow");
+    const sectionTitle = document.getElementById("sectionTitle");
+    const sectionSubtitle = document.getElementById("sectionSubtitle");
+    const heroHighlightEyebrow = document.getElementById("heroHighlightEyebrow");
+    const cealSelect = document.getElementById("cealSelect");
+    const heroHighlightTitle = document.getElementById("heroHighlightTitle");
+    const heroHighlightText = document.getElementById("heroHighlightText");
+    const heroHighlightMeta = document.getElementById("heroHighlightMeta");
+    const adminKpiLogins = document.getElementById("adminKpiLogins");
+    const adminKpiLoginsMeta = document.getElementById("adminKpiLoginsMeta");
+    const adminKpiActivities = document.getElementById("adminKpiActivities");
+    const adminKpiActivitiesMeta = document.getElementById("adminKpiActivitiesMeta");
+    const adminKpiCeals = document.getElementById("adminKpiCeals");
+    const adminKpiCealsMeta = document.getElementById("adminKpiCealsMeta");
+    const adminKpiHighlights = document.getElementById("adminKpiHighlights");
+    const adminKpiHighlightsMeta = document.getElementById("adminKpiHighlightsMeta");
+    const adminChartBadge = document.getElementById("adminChartBadge");
+    const adminSummaryBadge = document.getElementById("adminSummaryBadge");
+    const adminSummaryPosts = document.getElementById("adminSummaryPosts");
+    const adminSummaryThreads = document.getElementById("adminSummaryThreads");
+    const adminSummaryRequests = document.getElementById("adminSummaryRequests");
+    const adminSummaryLast = document.getElementById("adminSummaryLast");
+    const adminBars = {
+      Informatica: { bar: document.getElementById("barInformatica"), value: document.getElementById("valueInformatica") },
+      Industrial: { bar: document.getElementById("barIndustrial"), value: document.getElementById("valueIndustrial") },
+      Minas: { bar: document.getElementById("barMinas"), value: document.getElementById("valueMinas") },
+      Mecanica: { bar: document.getElementById("barMecanica"), value: document.getElementById("valueMecanica") }
+    };
+
+    function getSelectedCeal() {
+      return cealSelect.options[cealSelect.selectedIndex].textContent;
+    }
+
+    function detectRoleByEmail(email) {
+      const normalized = email.trim().toLowerCase();
+      if (roleDirectory.admin.includes(normalized)) return "admin";
+      if (roleDirectory.jefe.includes(normalized)) return "jefe";
+      if (roleDirectory.ceal.includes(normalized)) return "ceal";
+      return "student";
+    }
+
+    function updateAdminDashboard(filterKey = currentAdminFilter) {
+      currentAdminFilter = filterKey;
+      const metrics = adminMetrics[filterKey] || adminMetrics.all;
+
+      adminKpiLogins.textContent = metrics.logins;
+      adminKpiLoginsMeta.textContent = metrics.loginsMeta;
+      adminKpiActivities.textContent = metrics.activities;
+      adminKpiActivitiesMeta.textContent = metrics.activitiesMeta;
+      adminKpiCeals.textContent = metrics.ceals;
+      adminKpiCealsMeta.textContent = metrics.cealsMeta;
+      adminKpiHighlights.textContent = metrics.highlights;
+      adminKpiHighlightsMeta.textContent = metrics.highlightsMeta;
+      adminChartBadge.textContent = metrics.badge;
+      adminSummaryBadge.textContent = metrics.summaryBadge;
+      adminSummaryPosts.textContent = metrics.posts;
+      adminSummaryThreads.textContent = metrics.threads;
+      adminSummaryRequests.textContent = metrics.requests;
+      adminSummaryLast.textContent = metrics.last;
+
+      const chartValues = Object.values(metrics.chart);
+      const maxValue = Math.max(...chartValues, 1);
+      Object.entries(adminBars).forEach(([key, refs]) => {
+        const value = metrics.chart[key] || 0;
+        refs.value.textContent = value;
+        refs.bar.style.width = `${Math.max((value / maxValue) * 100, value > 0 ? 14 : 4)}%`;
+        refs.bar.style.opacity = value > 0 ? "1" : ".2";
+      });
+
+      document.querySelectorAll("[data-admin-filter]").forEach(btn => {
+        btn.classList.toggle("is-active", btn.dataset.adminFilter === filterKey);
+      });
+    }
+
+    function buildNav() {
+      const navTabs = roles[currentRole].tabs;
+
+      desktopNav.innerHTML = navTabs.map(tab => `
+        <button type="button" class="nav-item ${tab === currentTab ? 'is-active' : ''}" data-tab="${tab}">
+          <span class="nav-item__icon">${tabs[tab].icon}</span>
+          <span>${tabs[tab].label}</span>
+        </button>
+      `).join("");
+
+      mobileNav.innerHTML = navTabs.slice(0, 5).map(tab => `
+        <button type="button" class="mobile-nav__item ${tab === currentTab ? 'is-active' : ''}" data-tab="${tab}">
+          <span>${tabs[tab].icon}</span>
+          <small>${tabs[tab].label}</small>
+        </button>
+      `).join("");
+
+      document.querySelectorAll("[data-tab]").forEach(btn => {
+        btn.addEventListener("click", () => openTab(btn.dataset.tab));
+      });
+    }
+
+    function syncRoleButtons() {
+      document.querySelectorAll("[data-role-switch]").forEach(btn => {
+        const targetRole = btn.dataset.roleSwitch;
+        btn.classList.toggle("is-active", targetRole === currentRole);
+      });
+    }
+
+    function applyRole(role) {
+      currentRole = role;
+      if (!roles[currentRole].tabs.includes(currentTab)) currentTab = "inicio";
+
+      const cfg = roles[currentRole];
+      const selectedCeal = getSelectedCeal();
+      userAvatar.textContent = cfg.avatar;
+      userName.textContent = cfg.label;
+      userMeta.textContent = currentRole === "admin" ? "Acceso autenticado" : `${selectedCeal} activo`;
+      sectionEyebrow.textContent = cfg.eyebrow;
+      heroHighlightEyebrow.textContent = cfg.highlight.eyebrow;
+      heroHighlightTitle.textContent = currentRole === "admin"
+        ? "Revision del mensaje institucional por CEAL"
+        : `Mensaje destacado de ${selectedCeal}`;
+      heroHighlightText.textContent = cfg.highlight.text;
+      heroHighlightMeta.textContent = currentRole === "admin"
+        ? "Vista global de administracion"
+        : `Publicado por ${selectedCeal}`;
+
+      if (currentRole === "admin") updateAdminDashboard(currentAdminFilter);
+
+      document.querySelectorAll("[data-roles]").forEach(el => {
+        const allowed = el.dataset.roles.split(",").map(v => v.trim());
+        el.style.display = allowed.includes(currentRole) ? "" : "none";
+      });
+
+      buildNav();
+      syncRoleButtons();
+      openTab(currentTab, false);
+    }
+
+    function openTab(tabKey, updateNav = true) {
+      currentTab = tabKey;
+
+      document.querySelectorAll(".panel").forEach(panel => {
+        panel.classList.toggle("is-active", panel.dataset.panel === tabKey);
+      });
+
+      sectionTitle.textContent = tabs[tabKey].label;
+      sectionSubtitle.textContent = tabs[tabKey].subtitle;
+
+      if (updateNav) buildNav();
+    }
+
+    document.getElementById("enterBtn").addEventListener("click", () => {
+      const emailValue = document.getElementById("email").value || "estudiante@ucn.cl";
+      currentRole = detectRoleByEmail(emailValue);
+      authScreen.classList.add("is-hidden");
+      appShell.classList.remove("is-hidden");
+      applyRole(currentRole);
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      appShell.classList.add("is-hidden");
+      authScreen.classList.remove("is-hidden");
+    });
+
+    document.getElementById("googleMockBtn").addEventListener("click", () => {
+      document.getElementById("email").value = "estudiante@ucn.cl";
+    });
+
+    cealSelect.addEventListener("change", () => {
+      if (!appShell.classList.contains("is-hidden")) applyRole(currentRole);
+    });
+
+    document.querySelectorAll("[data-role-switch]").forEach(btn => {
+      btn.addEventListener("click", () => applyRole(btn.dataset.roleSwitch));
+    });
+
+    document.querySelectorAll("[data-admin-filter]").forEach(btn => {
+      btn.addEventListener("click", () => updateAdminDashboard(btn.dataset.adminFilter));
+    });
+
+    applyRole(currentRole);
+  </script>
+</body>
+</html>
