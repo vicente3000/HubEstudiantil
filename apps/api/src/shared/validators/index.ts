@@ -1,0 +1,2 @@
+// Validaciones compartidas del backend.
+
