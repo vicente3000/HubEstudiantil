@@ -106,14 +106,14 @@ export function buildModuleSummary(moduleKey: ModuleKey) {
     label: moduleInfo.label,
     description: moduleInfo.description,
     apiPath: moduleInfo.apiPath,
-    status: "ready_for_implementation",
+    status: "",
     tables: moduleInfo.tables,
     dependencies: {
       database: true,
       cache: moduleInfo.dependsOnCache
     },
     nextActions: [
-      "Definir validaciones del modulo",
+      "Definir validaciones del módulo",
       "Implementar queries en repository",
       "Implementar reglas de negocio en service",
       "Conectar endpoints reales en controller"

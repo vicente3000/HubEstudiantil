@@ -16,6 +16,9 @@
     "test": "node -e \"console.log('Pruebas pendientes de implementacion.');\""
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.10.2",
     "@types/pg": "^8.20.0",
     "tsx": "^4.19.2",
@@ -25,7 +28,9 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "google-auth-library": "^10.6.2",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.20.0",
     "redis": "^5.12.1"
   }

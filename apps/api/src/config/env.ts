@@ -42,6 +42,47 @@ function readBoolean(name: string, fallback: boolean): boolean {
   throw new Error(`Environment variable ${name} must be "true" or "false"`);
 }
 
+function readOptionalString(name: string, fallback = ""): string {
+  const rawValue = process.env[name];
+
+  if (rawValue === undefined || rawValue.trim() === "") {
+    return fallback;
+  }
+
+  return rawValue.trim();
+}
+
+function readStringArray(name: string, fallback: string[]): string[] {
+  const rawValue = process.env[name];
+
+  if (rawValue === undefined || rawValue.trim() === "") {
+    return fallback;
+  }
+
+  return rawValue
+    .split(",")
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function resolveAllowedInstitutionalEmailDomains(): string[] {
+  if (process.env.ALLOWED_INSTITUTIONAL_EMAIL_DOMAINS?.trim()) {
+    return readStringArray("ALLOWED_INSTITUTIONAL_EMAIL_DOMAINS", []);
+  }
+
+  if (process.env.AUTH_ALLOWED_EMAIL_DOMAIN?.trim()) {
+    return [process.env.AUTH_ALLOWED_EMAIL_DOMAIN.trim().toLowerCase()];
+  }
+
+  const legacySuffix = readOptionalString("ALLOWED_INSTITUTIONAL_EMAIL_SUFFIX", "@ucn.cl").trim();
+
+  if (legacySuffix.startsWith("@")) {
+    return [legacySuffix.slice(1).toLowerCase()];
+  }
+
+  return [legacySuffix.toLowerCase()];
+}
+
 export const env = Object.freeze({
   NODE_ENV: process.env.NODE_ENV ?? "development",
   PORT: readInteger("PORT", 3000),
@@ -60,8 +101,40 @@ export const env = Object.freeze({
   VALKEY_CONNECTION_RETRIES: readInteger("VALKEY_CONNECTION_RETRIES", 20),
   VALKEY_CONNECTION_RETRY_DELAY_MS: readInteger("VALKEY_CONNECTION_RETRY_DELAY_MS", 2_000),
   JWT_SECRET: readRequiredString("JWT_SECRET", "change_this_secret"),
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID ?? "",
-  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET ?? ""
+  JWT_EXPIRES_IN: readOptionalString("JWT_EXPIRES_IN", "7d"),
+  /** Origen del frontend (sin barra final). Redirecciones post-OAuth. */
+  WEB_APP_ORIGIN: readOptionalString("WEB_APP_ORIGIN", "http://localhost:5173").replace(/\/$/, ""),
+  /** URI exacta registrada en Google Cloud (callback del API). */
+  GOOGLE_OAUTH_REDIRECT_URI: readOptionalString(
+    "GOOGLE_OAUTH_REDIRECT_URI",
+    "http://localhost:3000/api/auth/google/callback"
+  ),
+  GOOGLE_CLIENT_ID: readOptionalString("895204162462-uno1pa4hccnct60h99kg7s98clchdgvh.apps.googleusercontent.com"),
+  GOOGLE_CLIENT_SECRET: readOptionalString("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"),
+  /** Dominios institucionales permitidos para crear un usuario nuevo con Google. */
+  ALLOWED_INSTITUTIONAL_EMAIL_DOMAINS: resolveAllowedInstitutionalEmailDomains(),
+  /** En producción queda desactivado salvo `ENABLE_DEV_TOKEN_AUTH=true`. */
+  ENABLE_DEV_TOKEN_AUTH: readBoolean(
+    "ENABLE_DEV_TOKEN_AUTH",
+    (process.env.NODE_ENV ?? "development") !== "production"
+  )
 });
+
+export function isGoogleOAuthConfigured(): boolean {
+  return (
+    env.GOOGLE_CLIENT_ID.length > 0 &&
+    env.GOOGLE_CLIENT_SECRET.length > 0 &&
+    env.GOOGLE_OAUTH_REDIRECT_URI.length > 0 &&
+    env.WEB_APP_ORIGIN.length > 0
+  );
+}
+
+export function isDevTokenAuthEnabled(): boolean {
+  if (env.NODE_ENV !== "production") {
+    return true;
+  }
+
+  return env.ENABLE_DEV_TOKEN_AUTH;
+}
 
 export type AppEnv = typeof env;

@@ -3,8 +3,13 @@ import { AppRoutes } from "../routes/index.jsx";
 
 export default function App() {
   return (
-    <AppProviders>
-      <AppRoutes />
-    </AppProviders>
+    <div className="app-root">
+      <div className="bg-orb bg-orb--1" aria-hidden />
+      <div className="bg-orb bg-orb--2" aria-hidden />
+      <div className="bg-grid" aria-hidden />
+      <AppProviders>
+        <AppRoutes />
+      </AppProviders>
+    </div>
   );
 }

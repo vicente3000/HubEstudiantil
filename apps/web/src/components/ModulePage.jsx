@@ -49,21 +49,28 @@ export function ModulePage({ title, description, loadData, endpoints = [] }) {
     <section className="page-stack">
       <header className="page-header">
         <div>
-          <span className="page-eyebrow">Modulo</span>
+          <span className="page-eyebrow">Módulo</span>
           <h1>{title}</h1>
           <p>{description}</p>
         </div>
       </header>
 
-      <div className="card-grid">
-        <article className="card">
-          <h2>Estado del modulo</h2>
-          <p>Esta pantalla ya esta conectada al backend base para que el equipo pueda desarrollar encima.</p>
-          <span className={`status-chip status-chip--${state.status}`}>{state.status}</span>
+      <div className="dashboard-grid">
+        <article className="glass-card">
+          <div className="card-head">
+            <h4>Estado del módulo</h4>
+            <span className={`status-chip status-chip--${state.status}`}>{state.status}</span>
+          </div>
+          <p className="muted-text no-top-margin">
+            Esta pantalla ya está conectada al backend base para que el equipo pueda desarrollar encima.
+          </p>
         </article>
 
-        <article className="card">
-          <h2>Endpoints sugeridos</h2>
+        <article className="glass-card">
+          <div className="card-head">
+            <h4>Endpoints sugeridos</h4>
+            <span className="soft-badge">API</span>
+          </div>
           <ul className="simple-list">
             {endpoints.map((endpoint) => (
               <li key={endpoint}>
@@ -74,9 +81,11 @@ export function ModulePage({ title, description, loadData, endpoints = [] }) {
         </article>
       </div>
 
-      <article className="card">
-        <h2>Respuesta actual</h2>
-        {state.status === "loading" && <p>Cargando informacion del modulo...</p>}
+      <article className="glass-card">
+        <div className="card-head">
+          <h4>Respuesta actual</h4>
+        </div>
+        {state.status === "loading" && <p className="muted-text">Cargando información del módulo...</p>}
         {state.status === "error" && <p className="error-text">{state.error}</p>}
         {state.payload && <pre className="code-block">{JSON.stringify(state.payload, null, 2)}</pre>}
       </article>
